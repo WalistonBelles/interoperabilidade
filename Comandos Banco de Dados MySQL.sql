@@ -38,3 +38,15 @@ CREATE TABLE IF NOT EXISTS `triagem` (
 	`datahora`TIMESTAMP NOT NULL,
 	PRIMARY KEY  (`id`)
 );
+
+-- Cria a Tabela Atendimento
+
+CREATE TABLE IF NOT EXISTS `atendimento` (
+	`id` INT(11) NOT NULL auto_increment,
+	`triagem` INT(30) NOT NULL,
+	`diagnostico` VARCHAR(255) NOT NULL,
+	`medicamento` VARCHAR(255) NOT NULL,
+	`encaminhamento` VARCHAR(255) NOT NULL,
+	`datahora` TIMESTAMP NOT NULL,
+	PRIMARY KEY  (`id`)
+);
