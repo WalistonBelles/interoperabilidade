@@ -1,40 +1,28 @@
 <?php
-	require_once('database.php');
-
-	// Confere se existem arquivos enviados como Cópia de Documentos
+	$conexao = new pdo('sqlite:bancodedados.data');
+	//$drop = "drop table if exists paciente; ";
+	//$conexao->exec($drop);
+	$create = "create table if not exists paciente (id integer primary key autoincrement, documento text, nome text, sexo text, nascimento date, email text, fone text, moradia text, copia text, datahora timestamp); ";
+	$conexao->exec($create);
+	$create = "create table if not exists triagem (id integer primary key autoincrement, paciente integer, celsius integer, bpm integer, pas integer, pad integer, historia text, avaliacao integer, datahora timestamp); ";
+	$conexao->exec($create);
 	if ( isset( $_FILES['copia']['tmp_name'] ) ) {
 		$copia = base64_encode(file_get_contents($_FILES['copia']['tmp_name']));
 	} else {
 		$copia = '';
 	}
-
-	$agora = date('d/m/Y H:i');
-	$insert = "INSERT INTO paciente values (null, 
-	'".$_REQUEST['documento']."',
-	'".$_REQUEST['nome']."',
-	'".$_REQUEST['sexo']."',
-	'".$_REQUEST['nascimento']."',
-	'".$_REQUEST['email']."',
-	'".$_REQUEST['fone']."',
-	'".$_REQUEST['moradia']."',
-	'".$copia."',
-	'".$agora."');";
-	if ($conn->query($insert) === TRUE) {
-		echo "New record created successfully";
-		} else {
-		echo "Error: " . $insert . "<br>" . $conn->error;
-	}
-
-	$sql = "SELECT MAX(id) as id FROM paciente";
-	$sql1 = $conn->query($sql);
-	$row = $sql1->fetch_assoc();
-	$last_id = $row["id"];
-	$insert2 = "INSERT INTO triagem values (null, 
-	'".$last_id."', null, null, null, null, null, null, null);";
-	if ($conn->query($insert2) === TRUE) {
+	
+	$insert = "insert into paciente values (null, '".$_REQUEST['documento']."', '".$_REQUEST['nome']."', '".$_REQUEST['sexo']."', '".$_REQUEST['nascimento']."', '".$_REQUEST['email']."', '".$_REQUEST['fone']."', '".$_REQUEST['moradia']."', '".$copia."', datetime('now') );";
+	$resultado1 = $conexao->exec($insert);
+	$pid = "select max(id) pid from paciente;";
+	$pid = $conexao->query($pid)->fetchAll();
+	$pid = $pid[0]['pid'];
+	$insert = "insert into triagem values (null, '".$pid."', null, null, null, null, null, null, null);";
+	$resultado2 = $conexao->exec($insert);
+	if ( $resultado1 > 0 and $resultado2 > 0 ) {
 		print 'Inserido com sucesso.';
 		print '<script>window.setTimeout(function(){window.location=\'/paciente_cadastro.php\';}, 2000);</script>';
-		} else {
-		echo "Error: " . $insert2 . "<br>" . $conn->error;
+	} else {
+		print 'Erro na inserção.';
 	}
 ?>
