@@ -1,5 +1,15 @@
 <?php
-	$conexao = new pdo('sqlite:bancodedados.data');
+	
+	require_once('database.php');
+	$res = $conn->query("SELECT `id` FROM `atendimento` ORDER BY `id` ASC");
+
+	for ( $row_no = $res->num_rows -1; $row_no >= 0; $row_no--) {
+		$res->data_seek($row_no);
+		$row = $res->fetch_assoc();
+		echo " id = " . $row['id'] . "\n";
+	}
+
+	/* $conexao = new pdo('sqlite:bancodedados.data');
 	$pesquisa = "select t.id, p.documento, p.nome, p.sexo, ( (strftime('%Y', 'now') - strftime('%Y', p.nascimento)) - (strftime('%m-%d', 'now') < strftime('%m-%d', p.nascimento))) idade from triagem t join paciente p on p.id = t.paciente where t.id = '".$_REQUEST['id']."' and t.avaliacao is not null ";
 	$resultado = $conexao->query($pesquisa)->fetchAll();
 	$tupla = $resultado[0];
@@ -20,6 +30,7 @@
 		default:
 			throw Exception ('Risco inválido.');
 	}
+	*/
 ?>
 <html>
 	<head>

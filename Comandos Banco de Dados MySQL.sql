@@ -28,14 +28,14 @@ CREATE TABLE IF NOT EXISTS `paciente` (
 
 CREATE TABLE IF NOT EXISTS `triagem` (
 	`id` INT(11) NOT NULL auto_increment,
-	`paciente`INT(30) NOT NULL,
-	`celsius`INT(30) NOT NULL,
-	`bpm`INT(30) NOT NULL,
-	`pas`INT(30) NOT NULL,
-	`pad`INT(30) NOT NULL,
-	`historia` VARCHAR(255) NOT NULL,
-	`avaliacao`INT(30) NOT NULL,
-	`datahora`TIMESTAMP NOT NULL,
+	`paciente`INT(30),
+	`celsius`INT(30),
+	`bpm`INT(30),
+	`pas`INT(30),
+	`pad`INT(30),
+	`historia` VARCHAR(255),
+	`avaliacao`INT(30),
+	`datahora`TIMESTAMP,
 	PRIMARY KEY  (`id`)
 );
 
@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS `triagem` (
 
 CREATE TABLE IF NOT EXISTS `atendimento` (
 	`id` INT(11) NOT NULL auto_increment,
-	`triagem` INT(30) NOT NULL,
-	`diagnostico` VARCHAR(255) NOT NULL,
-	`medicamento` VARCHAR(255) NOT NULL,
-	`encaminhamento` VARCHAR(255) NOT NULL,
-	`datahora` TIMESTAMP NOT NULL,
+	`triagem` INT(30),
+	`diagnostico` VARCHAR(255),
+	`medicamento` VARCHAR(255),
+	`encaminhamento` VARCHAR(255),
+	`datahora` TIMESTAMP,
 	PRIMARY KEY  (`id`)
 );
