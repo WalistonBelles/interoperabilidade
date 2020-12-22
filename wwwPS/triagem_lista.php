@@ -1,6 +1,6 @@
 <?php
 	$conexao = new pdo('sqlite:bancodedados.data');
-	$pesquisa = "select t.id, p.documento, p.nome, p.sexo, ( (strftime('%Y', 'now') - strftime('%Y', p.nascimento)) - (strftime('%m-%d', 'now') < strftime('%m-%d', p.nascimento))) idade from triagem t join paciente p on p.id = t.paciente where t.avaliacao is null order by p.datahora; ";
+	$pesquisa = "select t.id, p.documento, p.tipo_documento, p.nome, p.sexo, ( (strftime('%Y', 'now') - strftime('%Y', p.nascimento)) - (strftime('%m-%d', 'now') < strftime('%m-%d', p.nascimento))) idade from triagem t join paciente p on p.id = t.paciente where t.avaliacao is null order by p.datahora; ";
 	$resultado = $conexao->query($pesquisa)->fetchAll();
 	if ( count($resultado) == 0 ) {
 		require 'menu.php';
@@ -19,6 +19,7 @@
 			<caption>Triagens Pendentes</caption>
 			<tr>
 				<th>Documento</th>
+				<th>Tipo_Documento</th>
 				<th>Nome</th>
 				<th>Sexo</th>
 				<th>Idade</th>
@@ -29,6 +30,7 @@
 ?>
 			<tr>
 				<td><?php print $tupla['documento']; ?></td>
+				<td><?php print $tupla['tipo_documento']; ?></td>
 				<td><?php print $tupla['nome']; ?></td>
 				<td><?php print $tupla['sexo']; ?></td>
 				<td><?php print $tupla['idade']; ?></td>

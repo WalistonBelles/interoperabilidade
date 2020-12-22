@@ -9,7 +9,15 @@
 			<frameset>
 				<legend>Cadastro de Paciente</legend>
 				<p>
-					<input name="documento" type="text" placeholder="CPF ou RG ou Passaporte" />
+					<select name="tipo_documento">
+						<option value="" hidden>Selecione o Tipo de Documento</option>
+						<option value="RG">RG</option>
+						<option value="CPF">CPF</option>
+						<option value="Passaporte">Passaporte</option>
+					</select>
+				</p>
+				<p>
+					<input name="documento" type="text" placeholder="Número do Documento" />
 				</p>
 				<p>
 					<input name="nome" type="text" placeholder="Nome" />
