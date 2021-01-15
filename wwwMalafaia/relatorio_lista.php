@@ -31,6 +31,7 @@
 				<th>Diagnóstico</th>
 				<th>Medicamentos</th>
 				<th>Encaminhamento</th>
+				<th colspan="2">Operações</th>
 			</tr>
 <?php
 		foreach ( $resultado as $tupla ) {
@@ -61,6 +62,16 @@
 				<td><?php print $tupla['diagnostico']; ?></td>
 				<td><?php print $tupla['medicamento']; ?></td>
 				<td><?php print $tupla['encaminhamento']; ?></td>
+				<td><form method="post" action="atendimento_pesquisa.php">
+					<input type="hidden" name="documento" value="<?php print $tupla['documento']; ?>" />
+					<input type="submit" value="Ver Histórico Local" />
+				</form>
+				</td>
+				<td><form method="post" action="relatorio_historicoGeral.php">
+					<input type="hidden" name="documento" value="<?php print $tupla['documento']; ?>" />
+					<input type="submit" value="Ver Histórico Completo com Outras Unidades" />
+				</form>
+				</td>
 			</tr>
 <?php
 		}

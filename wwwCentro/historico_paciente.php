@@ -21,7 +21,7 @@
 		return $resultado;
 	}
 
-	$servidor = new SoapServer( null, ['uri' => 'http://localhost:8081/historico_paciente.php'] ); 
+	$servidor = new SoapServer( null, ['uri' => 'http://localhost:8083/historico_paciente.php'] ); 
 	$servidor->addFunction( 'historico_paciente' );
 	$servidor->handle();
 ?>

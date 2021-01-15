@@ -2,8 +2,8 @@
     $conexao = new pdo('sqlite:bancodedados.data');
     
     $cliente = new SoapClient( null, [ 
-        'location' => 'http://localhost:8081/historico_paciente.php', 
-        'uri' => 'http://localhost:8081/historico_paciente.php' 
+        'location' => 'http://localhost:8082/historico_paciente.php', 
+        'uri' => 'http://localhost:8082/historico_paciente.php' 
         ] );
     $retorno = $cliente->historico_paciente($_REQUEST['documento']);
 
@@ -30,7 +30,7 @@
 				<td><?php print $tupla['unidade']; ?></td>
                 <td><?php print $tupla['diagnostico']; ?></td>
 				<td><?php print $tupla['encaminhamento']; ?></td>
-				<td><?php print $tupla['datahora']; ?></td>
+				<td><?php print $tupla['encaminhamento']; ?></td>
 			</tr>
         <?php
                 }

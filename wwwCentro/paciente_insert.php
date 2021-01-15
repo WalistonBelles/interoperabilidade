@@ -3,17 +3,19 @@
 	
 	$drop = "drop table if exists paciente; ";
 	// Deletar a tabela Paciente
-	//$conexao->exec($drop);
+	// $conexao->exec($drop);
 	$drop = "drop table if exists triagem; ";
 	// Deletar a tabela triagem
-	//$conexao->exec($drop);
+	// $conexao->exec($drop);
 
 	// Armazena em 1 variável a Query para criar a Tabela Paciente
 	$create = "CREATE TABLE IF NOT EXISTS paciente 
 		(id integer primary key autoincrement, 
 		documento text, 
 		tipo_documento text, 
-		nome text, sexo text, 
+		unidade text, 
+		nome text, 
+		sexo text, 
 		nascimento date, 
 		email text, 
 		fone text, 
@@ -131,6 +133,7 @@
 			(NULL, 
 			'".$_REQUEST['documento']."', 
 			'".$_REQUEST['tipo_documento']."', 
+			'Centro', 
 			'".$_REQUEST['nome']."', 
 			'".$_REQUEST['sexo']."', 
 			'".$_REQUEST['nascimento']."', 

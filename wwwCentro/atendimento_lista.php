@@ -1,6 +1,7 @@
 <?php
 	$conexao = new pdo('sqlite:bancodedados.data');
-	$pesquisa = "select t.id, t.avaliacao, p.documento, p.nome, p.sexo, ( (strftime('%Y', 'now') - strftime('%Y', p.nascimento)) - (strftime('%m-%d', 'now') < strftime('%m-%d', p.nascimento))) idade from triagem t join paciente p on p.id = t.paciente where t.avaliacao is not null and (select count(*) from atendimento where triagem = t.id) = 0 order by t.avaliacao desc, p.datahora; ";
+	
+	$pesquisa = "select t.id, t.avaliacao, p.documento, p.unidade, p.nome, p.sexo, ( (strftime('%Y', 'now') - strftime('%Y', p.nascimento)) - (strftime('%m-%d', 'now') < strftime('%m-%d', p.nascimento))) idade from triagem t join paciente p on p.id = t.paciente where t.avaliacao is not null and (select count(*) from atendimento where triagem = t.id) = 0 order by t.avaliacao desc, p.datahora; ";
 	$resultado = $conexao->query($pesquisa)->fetchAll();
 	if ( count($resultado) == 0 ) {
 		require 'menu.php';
@@ -15,7 +16,6 @@
 		<?php
 			require 'menu.php';
 		?>
-		<center> <h2> Pronto Atendimento Centro </h2> </center>
 		<table border="1">
 			<caption>Atendimentos Pendentes</caption>
 			<tr>
@@ -24,7 +24,7 @@
 				<th>Sexo</th>
 				<th>Idade</th>
 				<th>Avaliação de Risco</th>
-				<th></th>
+				<th colspan="3">Operações</th>
 			</tr>
 <?php
 		foreach ( $resultado as $tupla ) {
@@ -53,6 +53,7 @@
 				<td><?php print $tupla['idade']; ?></td>
 				<td><?php print $avaliacao; ?></td>
 				<td><a href="/atendimento_cadastro.php?id=<?php print $tupla['id']; ?>">Atender</a></td>
+				<td><a href="/atendimento_pesquisa.php?id=<?php print $tupla['documento']; ?>">Ver Histórico Local</a></td>
 			</tr>
 <?php
 		}

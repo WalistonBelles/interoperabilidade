@@ -77,6 +77,7 @@
 		</table>
 		<form method="post" action="atendimento_insert.php">
 			<input type="hidden" name="triagem" value="<?php print $tupla['id']; ?>" />
+			<input type="hidden" name="documento" value="<?php print $tupla['documento']; ?>" />
 			<frameset>
 				<legend>Cadastro de Atendimento</legend>
 				<p>
