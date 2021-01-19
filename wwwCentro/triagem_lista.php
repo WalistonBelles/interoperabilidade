@@ -4,18 +4,16 @@
 	$resultado = $conexao->query($pesquisa)->fetchAll();
 	if ( count($resultado) == 0 ) {
 		require 'menu.php';
-		print 'Parabéns! Não há triagens pendentes.';
+		print '<br><br><center>Parabéns! Não há triagens pendentes.</center>';
 		print '<script>window.setTimeout(function(){window.location=\'/triagem_lista.php\';}, 2000);</script>';
 	} else {
 ?>
 <html>
-	<head>
-	</head>
-	<body>
 		<?php
 			require 'menu.php';
 		?>
-		<table border="1">
+		</br></br>
+		<table border="1" class="table table-dark table-hover">
 			<caption>Triagens Pendentes</caption>
 			<tr>
 				<th>Documento</th>
@@ -23,7 +21,7 @@
 				<th>Nome</th>
 				<th>Sexo</th>
 				<th>Idade</th>
-				<th></th>
+				<th>Operações</th>
 			</tr>
 <?php
 		foreach ( $resultado as $tupla ) {

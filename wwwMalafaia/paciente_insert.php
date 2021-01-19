@@ -177,8 +177,8 @@
 			$json = $response;
 			$array = json_decode($json, true);
 			$situacao = $array['situacao'];
+			print '<script>alert(\'Inserido com sucesso.\');</script>';
 			
-			print 'Inserido com sucesso.';
 			if ( $situacao == 'procurado' ) {
 				print '<script>alert(\'Atenção! Cuidado! Indivíduo procurado.\'); window.setTimeout(function(){window.location=\'/paciente_cadastro.php\';}, 2000);</script>';
 			} else {

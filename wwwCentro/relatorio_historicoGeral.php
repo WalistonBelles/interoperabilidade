@@ -5,31 +5,28 @@
         'location' => 'http://localhost:8083/historico_paciente.php', 
         'uri' => 'http://localhost:8083/historico_paciente.php' 
         ] );
-    $retorno = $unidadeLocal->historico_paciente($_REQUEST['documento']);
-
-    // SOAP com Unidade Malafaia
-    $unidadeMalafaia = new SoapClient( null, [ 
-        'location' => 'http://localhost:8082/historico_paciente.php', 
-        'uri' => 'http://localhost:8082/historico_paciente.php' 
-        ] );
-    $retornoMalafaia = $unidadeMalafaia->historico_paciente($_REQUEST['documento']);
+    $retorno = $unidadeLocal->history($_REQUEST['documento']);
 
     // SOAP com Unidade Pedra Branca
     $unidadePedraBranca = new SoapClient( null, [ 
         'location' => 'http://localhost:8081/historico_paciente.php', 
         'uri' => 'http://localhost:8081/historico_paciente.php' 
         ] );
-    $retornoPedraBranca = $unidadePedraBranca->historico_paciente($_REQUEST['documento']);
+    $retornoPedraBranca = $unidadePedraBranca->history($_REQUEST['documento']);
+
+    // SOAP com Unidade Malafaia
+    $unidadeMalafaia = new SoapClient( null, [ 
+        'location' => 'http://localhost:8082/historico_paciente.php', 
+        'uri' => 'http://localhost:8082/historico_paciente.php' 
+        ] );
+    $retornoMalafaia = $unidadeMalafaia->history($_REQUEST['documento']);
 
 ?>
 <html>
-	<head>
-	</head>
-	<body>
 		<?php
 			require 'menu.php';
-		?>
-        <table border="1">
+		?><br><br>
+        <table border="1" class="table table-dark table-hover">
 			<caption>Relatório de Atendimentos Geral</caption>
 			<tr>
 				<th>Unidade</th>
@@ -48,7 +45,7 @@
 			</tr>
         <?php
                 }
-            foreach ( $retornoMalafaia as $tupla ) {
+            foreach ( $retornoPedraBranca as $tupla ) {
         ?>
             <tr>
 				<td><?php print $tupla['unidade']; ?></td>
@@ -58,7 +55,7 @@
 			</tr>
         <?php
                 }
-            foreach ( $retornoPedraBranca as $tupla ) {
+            foreach ( $retornoMalafaia as $tupla ) {
         ?>
             <tr>
 				<td><?php print $tupla['unidade']; ?></td>

@@ -22,12 +22,11 @@
 	}
 ?>
 <html>
-	<head>
-	</head>
-	<body>
 		<?php
 			require 'menu.php';
 		?>
+		<br><br>
+		<center>
 		<table>
 			<caption>Dados do Paciente</caption>
 			<tr>
@@ -95,5 +94,6 @@
 				</p>
 			</frameset>
 		</form>
+		</center>
 	</body>
 </html>

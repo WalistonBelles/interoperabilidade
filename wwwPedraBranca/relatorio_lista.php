@@ -7,20 +7,21 @@
 	$resultado = $conexao->query($pesquisa)->fetchAll();
 ?>
 <html>
-	<head>
-	</head>
-	<body>
+		<br>
 		<?php
 			require 'menu.php';
 		?>
-		<form method="post">
-			<frameset>
-				<caption>Pesquisa</caption>
-				<input type="text" name="pesquisa" />
-				<input type="submit" value="Pesquisar" />
-			</frameset>
-		</form>
-		<table border="1">
+		<br>
+		<center>
+			<form method="post" action="relatorio_historicoGeral.php">
+				<frameset>
+					<caption>Pesquisa</caption>
+					<input type="text" name="documento" />
+					<input type="submit" value="Pesquisar" />
+				</frameset>
+			</form>
+		</center>
+		<table border="1" class="table table-dark table-hover" width="90%">
 			<caption>Relatório de Atendimentos Concluídos</caption>
 			<tr>
 				<th>Registro</th>
@@ -31,7 +32,11 @@
 				<th>Diagnóstico</th>
 				<th>Medicamentos</th>
 				<th>Encaminhamento</th>
-				<th colspan="2">Operações</th>
+				<th colspan="2">
+					<center>
+						Operações
+					</center>
+				</th>
 			</tr>
 <?php
 		foreach ( $resultado as $tupla ) {
@@ -62,7 +67,7 @@
 				<td><?php print $tupla['diagnostico']; ?></td>
 				<td><?php print $tupla['medicamento']; ?></td>
 				<td><?php print $tupla['encaminhamento']; ?></td>
-				<td><form method="post" action="atendimento_pesquisa.php">
+				<td><form method="post" action="atendimento_gera_historico.php">
 					<input type="hidden" name="documento" value="<?php print $tupla['documento']; ?>" />
 					<input type="submit" value="Ver Histórico Local" />
 				</form>
@@ -77,5 +82,6 @@
 		}
 ?>
 		</table>
+		<script src="js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>

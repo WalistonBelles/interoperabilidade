@@ -1,12 +1,8 @@
 <?php
 	$conexao = new pdo('sqlite:bancodedados.data');
-	//$drop = "drop table if exists atendimento; ";
-	//$conexao->exec($drop);
+
 	$create = "create table if not exists atendimento (id integer primary key autoincrement, triagem integer, diagnostico text, medicamento text, encaminhamento text, datahora timestamp); ";
 	$conexao->exec($create);
-
-	$documento = "SELECT documento FROM paciente WHERE documento = '".$_REQUEST['documento']."';";
-	$result = $conexao->exec($documento);
 
 	$insert = "insert into atendimento values (null, '".$_REQUEST['triagem']."', '".$_REQUEST['diagnostico']."', '".$_REQUEST['medicamento']."', '".$_REQUEST['encaminhamento']."', datetime('now') );";
 	$resultado = $conexao->exec($insert);

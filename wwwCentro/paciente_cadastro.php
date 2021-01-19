@@ -1,10 +1,8 @@
 <html>
-	<head>
-	</head>
-	<body>
 <?php
 	require 'menu.php';
 ?>
+	<center>
 		<form method="post" action="paciente_insert.php">
 			<frameset>
 				<legend>Cadastro de Paciente</legend>
@@ -51,5 +49,6 @@
 				</p>
 			</frameset>
 		</form>
+		</center>
 	</body>
 </html>

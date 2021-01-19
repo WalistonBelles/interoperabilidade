@@ -5,17 +5,15 @@
 	$resultado = $conexao->query($pesquisa)->fetchAll();
 	if ( count($resultado) == 0 ) {
 		require 'menu.php';
-		print 'Parabéns! Não há atendimentos pendentes.';
+		print '<br><br><center>Parabéns! Não há atendimentos pendentes.</center>';
 		print '<script>window.setTimeout(function(){window.location=\'/atendimento_lista.php\';}, 2000);</script>';
 	} else {
 ?>
 <html>
-	<head>
-	</head>
-	<body>
 		<?php
 			require 'menu.php';
 		?>
+		</br></br>
 		<table border="1">
 			<caption>Atendimentos Pendentes</caption>
 			<tr>
@@ -24,27 +22,28 @@
 				<th>Sexo</th>
 				<th>Idade</th>
 				<th>Avaliação de Risco</th>
-				<th colspan="3">Operações</th>
+				<th colspan="2">Operações</th>
 			</tr>
 <?php
 		foreach ( $resultado as $tupla ) {
 			$avaliacao = '';
-			switch ( $_REQUEST['avaliacao'] ) {
-				case 3:
-					$avaliacao = 'Alto';
-					break;
-				case 2:
-					$avaliacao = 'Médio';
-					break;
-				case 1:
-					$avaliaxao = 'Baixo';
-					break;
-				case 0:
-					$avaliacao = 'Eletivo';
-					break;
-				default:
-					throw Exception ('Risco inválido.');
-			}
+			
+		switch ( $tupla['avaliacao'] ) {
+			case 3:
+				$avaliacao = 'red';
+				break;
+			case 2:
+				$avaliacao = 'yellow';
+				break;
+			case 1:
+				$avaliaxao = 'green';
+				break;
+			case 0:
+				$avaliacao = 'lightBlue';
+				break;
+			default:
+				throw Exception ('Risco inválido.');
+		}
 ?>
 			<tr>
 				<td><?php print $tupla['documento']; ?></td>
@@ -53,7 +52,6 @@
 				<td><?php print $tupla['idade']; ?></td>
 				<td><?php print $avaliacao; ?></td>
 				<td><a href="/atendimento_cadastro.php?id=<?php print $tupla['id']; ?>">Atender</a></td>
-				<td><a href="/atendimento_pesquisa.php?id=<?php print $tupla['documento']; ?>">Ver Histórico Local</a></td>
 			</tr>
 <?php
 		}

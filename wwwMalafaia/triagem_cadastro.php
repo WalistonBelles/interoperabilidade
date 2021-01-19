@@ -5,12 +5,11 @@
 	$tupla = $resultado[0];
 ?>
 <html>
-	<head>
-	</head>
-	<body>
 		<?php
 			require 'menu.php';
 		?>
+		</br></br>
+		<center>
 		<table>
 			<caption>Dados do Paciente</caption>
 			<tr>
@@ -52,7 +51,7 @@
 				</p>
 				<p>
 					<select name="avaliacao" required>
-						<option value="" hidden>Avaliação de Risco</option>
+						<option value="0" hidden>Avaliação de Risco</option>
 						<option value="3">Alto</option>
 						<option value="2">Médio</option>
 						<option value="1">Baixo</option>
@@ -65,5 +64,6 @@
 				</p>
 			</frameset>
 		</form>
+		</center>
 	</body>
 </html>

@@ -5,31 +5,28 @@
         'location' => 'http://localhost:8082/historico_paciente.php', 
         'uri' => 'http://localhost:8082/historico_paciente.php' 
         ] );
-    $retorno = $unidadeLocal->historico_paciente($_REQUEST['documento']);
+    $retorno = $unidadeLocal->history($_REQUEST['documento']);
 
-    // SOAP com Unidade PedraBranca
+    // SOAP com Unidade Pedra Branca
     $unidadePedraBranca = new SoapClient( null, [ 
         'location' => 'http://localhost:8081/historico_paciente.php', 
         'uri' => 'http://localhost:8081/historico_paciente.php' 
         ] );
-    $retornoPedraBranca = $unidadePedraBranca->historico_paciente($_REQUEST['documento']);
+    $retornoPedraBranca = $unidadePedraBranca->history($_REQUEST['documento']);
 
     // SOAP com Unidade Centro
     $unidadeCentro = new SoapClient( null, [ 
         'location' => 'http://localhost:8083/historico_paciente.php', 
         'uri' => 'http://localhost:8083/historico_paciente.php' 
         ] );
-    $retornoCentro = $unidadeCentro->historico_paciente($_REQUEST['documento']);
+    $retornoCentro = $unidadeCentro->history($_REQUEST['documento']);
 
 ?>
 <html>
-	<head>
-	</head>
-	<body>
 		<?php
 			require 'menu.php';
-		?>
-        <table border="1">
+		?><br><br>
+        <table border="1" class="table table-dark table-hover">
 			<caption>Relatório de Atendimentos Geral</caption>
 			<tr>
 				<th>Unidade</th>
